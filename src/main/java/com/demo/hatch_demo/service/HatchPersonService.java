@@ -21,7 +21,7 @@ public class HatchPersonService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<HatchPerson> findAllByUserId(int age) {
+	public List<HatchPerson> findByAgeLessThan(int age) {
 		return Optional.ofNullable(hatchPersonRepository.findByAgeLessThan(age))
 				.orElse(Collections.emptyList());
 	}

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @RestController
@@ -15,7 +16,9 @@ public class HatchDemoController {
 	private final HatchPersonService hatchPersonService;
 
 	@GetMapping("/person")
-	public List<HatchPerson> hatchPersonAll(@RequestParam(name = "ageLessThan") int age) {
+	public List<HatchPerson> hatchPersonAll(@RequestParam(name = "ageLessThan") Integer age) {
+		if (Objects.nonNull(age))
+			return hatchPersonService.findByAgeLessThan(age);
 		return hatchPersonService.findAll();
 	}
 
